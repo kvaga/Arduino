@@ -6,9 +6,6 @@
 // https://github.com/johnrickman/LiquidCrystal_I2C
 LiquidCrystal_I2C lcd(0x27, 16,2); // set the LCD address to 0x27 for a 16 chars and 2 line display
 
-
-
-
 // for DHT11, 
 //      VCC: 5V or 3V
 //      GND: GNDc:\
@@ -21,10 +18,12 @@ char lcd_humidity_text[256];
 void setup() {
   Serial.begin(9600);
   lcd.init();                     // initialize the lcd
+  lcd.backlight();
+  lcd_print_th("   Hello,", "  Kvaga!!!");
+  delay(3000);
 }
 
 void lcd_print_th(const char* row1, const char* row2){
-  lcd.backlight();
   lcd.setCursor(0,0);
   lcd.print(row1);
   lcd.setCursor(1,1);
