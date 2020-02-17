@@ -95,9 +95,9 @@ int send_humidity_temperature() {
 
 int send_co2() {
   
-  unsigned int co2=0;
-
-  if((co2=readCO2())<0){
+  int co2=readCO2();
+  
+  if(co2<0){
     Serial.println("Nothing to send to the InfluxDB because an error was occured on MHZ19");
     return -1;
   }
@@ -106,7 +106,7 @@ int send_co2() {
   row_co2.addTag("ip", ipAddress2String(WiFi.localIP()));
   row_co2.addValue("value", co2);
   influx.write(row_co2);
-
+  return 0;
 //  delay(5000);
 }
 int mhz19_getPpm(){
@@ -176,6 +176,7 @@ int readCO2()
     Serial.println("CRC error!");
     return -1;
   }
+  
 }
 void loop()
 {
