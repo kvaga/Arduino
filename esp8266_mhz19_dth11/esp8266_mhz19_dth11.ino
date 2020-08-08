@@ -19,7 +19,7 @@ Influxdb influx(INFLUXDB_HOST);
 #define D6 12
 #define MH_Z19_RX D6
 #define MH_Z19_TX D7
-SoftwareSerial mySerial(MH_Z19_RX,MH_Z19_TX); // D7(esp8266) - к RX(mhz19), D6(esp8266) - к TX(mhz19). Важно: mhz19 требует напряжение 5В! esp8266 его не всегда может выдать - следует замерить напряжение на vin esp8266
+SoftwareSerial mySerial(MH_Z19_RX,MH_Z19_TX); // D7(esp8266) - к RX(mhz19), D6(esp8266) - к TX(mhz19). Важно: mhz19 требует напряжение 5В! esp8266 может его выдать только на пине VU
 
 // Arduino UNO
 //SoftwareSerial mySerial(A0, A1); // A0 - к TX сенсора, A1 - к RX
