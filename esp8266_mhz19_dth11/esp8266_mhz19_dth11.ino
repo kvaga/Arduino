@@ -7,7 +7,7 @@
 #include <credentials.h>
 #include <SoftwareSerial.h>;
 
-int pinDHT11 = 14;
+int pinDHT11 = 14; // пин data сенсора dth14 к D5 esp8266
 SimpleDHT11 dht11;
 char lcd_temperature_text[256];
 char lcd_humidity_text[256];
@@ -19,7 +19,7 @@ Influxdb influx(INFLUXDB_HOST);
 #define D6 12
 #define MH_Z19_RX D6
 #define MH_Z19_TX D7
-SoftwareSerial mySerial(MH_Z19_RX,MH_Z19_TX); // D7 - к RX сенсора, D6 - к RX
+SoftwareSerial mySerial(MH_Z19_RX,MH_Z19_TX); // D7(esp8266) - к RX(mhz19), D6(esp8266) - к TX(mhz19). Важно: mhz19 требует напряжение 5В! esp8266 его не всегда может выдать - следует замерить напряжение на vin esp8266
 
 // Arduino UNO
 //SoftwareSerial mySerial(A0, A1); // A0 - к TX сенсора, A1 - к RX
@@ -180,7 +180,7 @@ int readCO2()
 }
 void loop()
 {
-//  send_humidity_temperature();
+  send_humidity_temperature();
 //UNO
 // Serial.println(mhz19_getPpm());
  // ESP (requies 5v current)
